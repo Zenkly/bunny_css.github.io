@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        width: 100%;
+        display: grid;
+        place-items: center;
+        counter-reset: game;
+      }
+
+      input[type="checkbox"] {
+        appearance: none;
+        cursor: pointer;
+        width: 100%;
+        height: 40px;
+        position: absolute;
+      }
+
+      input[type="checkbox"]:checked {
+        counter-increment: game;
+      }
+
+      .total-count {
+        text-align: center;
+      }
+
+      .total-count::after {
+        content: counter(game);
+      }
+
+      .phone {
+        position: relative;
+        border: 8px solid black;
+        border-radius: 40px;
+        height: 600px;
+        width: 300px;
+        background-color: #ccefff;
+        box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3),
+          0 15px 12px rgba(0, 0, 0, 0.22);
+      }
+
+      .head,
+      .conejo {
+        position: absolute;
+        height: 450px;
+        width: 80px;
+        background: white;
+        /* CONEJO */
+        border-radius: 38px 38px 0 0;
+      }
+      .orejas {
+        position: absolute;
+        width: 15px;
+        height: 40px;
+        background-color: #e66465;
+        top: -30px;
+        box-shadow: 0px -2px 0px 5px white;
+        border-radius: 50%;
+        z-index: -1;
+      }
+
+      .orejas__izq {
+        left: 12px;
+      }
+
+      .orejas__der {
+        right: 12px;
+      }
+
+      .ojo {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: black;
+        border-radius: 50%;
+        top: 20px;
+
+        animation-name: blink;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+      }
+
+      @keyframes blink {
+        0% {
+          height: 4px;
+        }
+        5% {
+          transform: translate(0, 2px);
+          height: 1px;
+        }
+        10% {
+          height: 4px;
+          transform: translate(0, 0);
+        }
+      }
+
+      .ojo_izq {
+        left: 25px;
+      }
+
+      .ojo_der {
+        right: 25px;
+      }
+
+      .pasto {
+        background-color: #65a166;
+        width: 100%;
+        height: 15px;
+      }
+
+      .pasto__inferior_cafe {
+        position: relative;
+        width: 100%;
+        height: 50px;
+        padding-top: 50px;
+        background: linear-gradient(135deg, #a3563a 25%, transparent 25%) -50px 0,
+          linear-gradient(-135deg, #a3563a 25%, transparent 25%) -50px 0;
+        background-size: 50px 100%;
+      }
+      .pasto__inferior {
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        height: 50px;
+        background: linear-gradient(135deg, #65a166 25%, transparent 25%) -50px 0,
+          linear-gradient(-135deg, #65a166 25%, transparent 25%) -50px 0;
+        background-size: 50px 100%;
+      }
+
+      .conejo {
+        animation-name: layer;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+      }
+
+      .layer-1 {
+        position: absolute;
+        z-index: 1;
+        height: 450px;
+        width: 80px;
+        background: white;
+        bottom: 0;
+        right: 60px;
+        /* CONEJO */
+        border-radius: 38px 38px 0 0;
+        animation-duration: 2s;
+      }
+
+      @keyframes layer {
+        0% {
+          bottom: 0;
+        }
+        25% {
+          bottom: -80px;
+        }
+        100% {
+          bottom: 0;
+        }
+      }
+      .layer-1 input[type="checkbox"] {
+      }
+
+      .layer-2 {
+        position: absolute;
+        z-index: 2;
+        height: 450px;
+        width: 80px;
+        background: white;
+        bottom: 0;
+        left: 60px;
+        animation-duration: 1s;
+      }
+      .layer-3 {
+        position: absolute;
+        z-index: 3;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width: 220px;
+        height: 415px;
+        background: #ba6d4f;
+        bottom: 0;
+        box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3),
+          0 15px 12px rgba(0, 0, 0, 0.22);
+      }
+      .layer-4 {
+        position: absolute;
+        z-index: 4;
+        height: 350px;
+        width: 80px;
+        background: white;
+        bottom: 0;
+        left: 30px;
+        animation-duration: 0.5s;
+      }
+      .layer-5 {
+        position: absolute;
+        z-index: 5;
+        margin: 0 auto;
+        height: 315px;
+        width: 220px;
+        background-color: #ba6d4f;
+        bottom: 0;
+        box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3),
+          0 15px 12px rgba(0, 0, 0, 0.22);
+      }
+      .layer-6 {
+        position: absolute;
+        z-index: 6;
+        height: 250px;
+        width: 80px;
+        background: white;
+        bottom: 0;
+        right: 30px;
+        animation-duration: 0.25s;
+      }
+      .layer-7 {
+        position: absolute;
+        z-index: 7;
+        width: 140px;
+        height: 215px;
+        background-color: #ba6d4f;
+        bottom: 0;
+        right: 0;
+        box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3),
+          0 15px 12px rgba(0, 0, 0, 0.22);
+      }
+      .layer-8 {
+        position: absolute;
+        z-index: 8;
+        width: 100px;
+        height: 80px;
+        background: #65a166;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+      .layer-9 {
+        position: absolute;
+        z-index: 9;
+        width: 100px;
+        height: 50px;
+        background: white;
+        margin: 0 auto;
+        left: 0;
+        bottom: 0;
+      }
+      .layer-10 {
+        position: absolute;
+        z-index: 10;
+        width: 100px;
+        height: 50px;
+        background: white;
+        margin: 0 auto;
+        right: 0;
+        bottom: 0;
+      }
+
+      .arbusto,
+      .arbusto__blanco {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        background-color: #65a166;
+        left: 50%;
+        transform: translate(-50%, -65%);
+        border-radius: 50%;
+      }
+
+      .arbusto {
+        background-color: #65a166;
+      }
+
+      .arbusto::before,
+      .arbusto::after,
+      .arbusto__blanco::after,
+      .arbusto__blanco::before {
+        content: "";
+        width: 60px;
+        height: 60px;
+        background-color: #65a166;
+        position: absolute;
+        border-radius: 50%;
+      }
+      .arbusto::before {
+        transform: translate(-80%, 50%);
+      }
+      .arbusto::after {
+        transform: translate(80%, 50%);
+      }
+
+      .arbusto__blanco {
+        background-color: white;
+      }
+
+      .arbusto__blanco::before {
+        background-color: white;
+        transform: translate(-80%, 50%);
+      }
+
+      .arbusto__blanco::after {
+        background-color: white;
+        transform: translate(80%, 50%);
+      }
+
+      .phone {
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone">
+      <div class="layer-1 conejo">
+        <div class="orejas orejas__izq"></div>
+        <div class="orejas orejas__der"></div>
+        <div class="head">
+          <div class="ojo ojo_izq"></div>
+          <div class="ojo ojo_der"></div>
+        </div>
+        <input type="checkbox" />
+      </div>
+      <div class="layer-2 conejo">
+        <div class="orejas orejas__izq"></div>
+        <div class="orejas orejas__der"></div>
+        <div class="head">
+          <div class="ojo ojo_izq"></div>
+          <div class="ojo ojo_der"></div>
+        </div>
+        <input type="checkbox" />
+      </div>
+      <div class="layer-3">
+        <div class="pasto"></div>
+        <div class="pasto__inferior_cafe">
+          <div class="pasto__inferior"></div>
+        </div>
+      </div>
+      <div class="layer-4 conejo">
+        <div class="orejas orejas__izq"></div>
+        <div class="orejas orejas__der"></div>
+        <div class="head">
+          <div class="ojo ojo_izq"></div>
+          <div class="ojo ojo_der"></div>
+        </div>
+        <input type="checkbox" />
+      </div>
+      <div class="layer-5">
+        <div class="pasto"></div>
+        <div class="pasto__inferior_cafe">
+          <div class="pasto__inferior"></div>
+        </div>
+      </div>
+      <div class="layer-6 conejo">
+        <div class="orejas orejas__izq"></div>
+        <div class="orejas orejas__der"></div>
+        <div class="head">
+          <div class="ojo ojo_izq"></div>
+          <div class="ojo ojo_der"></div>
+        </div>
+        <input type="checkbox" />
+      </div>
+      <div class="layer-7">
+        <div class="pasto"></div>
+        <div class="pasto__inferior_cafe">
+          <div class="pasto__inferior"></div>
+        </div>
+      </div>
+      <div class="layer-8">
+        <div class="arbusto"></div>
+      </div>
+      <div class="layer-9">
+        <div class="arbusto__blanco"></div>
+      </div>
+      <div class="layer-10">
+        <div class="arbusto__blanco"></div>
+      </div>
+      <h2 class="total-count">Score:</h2>
+    </div>
+  </body>
+</html>
